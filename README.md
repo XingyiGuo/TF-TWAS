@@ -36,27 +36,27 @@ For each regulatory variant set, we trained the gene-expression prediction model
 
 
 ### Generalized Berk-Jones (GBJ) cross-set association test:
-In order to combine single-set test results, we adapted existing codes for integrating correlated and sparse signals in multiple tissues provided by UTMOST [3] (https://github.com/Joker-Jerome/UTMOST). First, a covariance matrix was built based on the single-set test results and LD structures are formed, then the GBJ test is carried out. The codes for both steps are shown as below:
+#In order to combine single-set test results, we adapted existing codes for integrating correlated and sparse signals in multiple tissues provided by UTMOST [3] #(https://github.com/Joker-Jerome/UTMOST). First, a covariance matrix was built based on the single-set test results and LD structures are formed, then the GBJ test is carried out. The codes for both steps are shown as below:
 
 **Step 1: Calculate the joint test covariance**
 
-`python /path/to/joint_covariance.py --weight_db weight_db/ --input_folder input_folder/ --covariance_output covariance/`
+#`python /path/to/joint_covariance.py --weight_db weight_db/ --input_folder input_folder/ --covariance_output covariance/`
 
 **Command parameters:**
 
 
-joint_covariance.py. It's downloaded from https://github.com/Joker-Jerome/UTMOST
+#joint_covariance.py. It's downloaded from https://github.com/Joker-Jerome/UTMOST
 
-weight_db. Name of weight db in data folder.
+#weight_db. Name of weight db in data folder.
 
-input_folder. Name of folder containing dosage data.
+#input_folder. Name of folder containing dosage data.
 
-covariance_output. Path where covariance results will be saved to.
+#covariance_output. Path where covariance results will be saved to.
 
 
 **Step 2: Combine gene-trait associations in variant set models by joint GBJ test**
 
-`python /path/to/joint_GBJ_test.py --weight_db weight_db/ --output_dir result_gbj/ --cov_dir covariance/ --input_folder asso_test/ --gene_info intermediate/gene_info.txt --output_name Func_GBJ_Joint --start_gene_index 1 --end_gene_index 12700\`
+#`python /path/to/joint_GBJ_test.py --weight_db weight_db/ --output_dir result_gbj/ --cov_dir covariance/ --input_folder asso_test/ --gene_info #intermediate/gene_info.txt --output_name Func_GBJ_Joint --start_gene_index 1 --end_gene_index 12700\`
 
 **Command parameters:**
 
