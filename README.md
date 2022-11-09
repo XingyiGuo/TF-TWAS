@@ -35,14 +35,10 @@ For each regulatory variant set, we trained the gene-expression prediction model
 `Rscript ./code/WeightEN_Stratify_GTexv7_New.R  target_gene_id`
 
 
-### Generalized Berk-Jones (GBJ) cross-set association test:
+
 #In order to combine single-set test results, we adapted existing codes for integrating correlated and sparse signals in multiple tissues provided by UTMOST [3] #(https://github.com/Joker-Jerome/UTMOST). First, a covariance matrix was built based on the single-set test results and LD structures are formed, then the GBJ test is carried out. The codes for both steps are shown as below:
 
-**Step 1: Calculate the joint test covariance**
-
 #`python /path/to/joint_covariance.py --weight_db weight_db/ --input_folder input_folder/ --covariance_output covariance/`
-
-**Command parameters:**
 
 
 #joint_covariance.py. It's downloaded from https://github.com/Joker-Jerome/UTMOST
@@ -53,28 +49,22 @@ For each regulatory variant set, we trained the gene-expression prediction model
 
 #covariance_output. Path where covariance results will be saved to.
 
-
-**Step 2: Combine gene-trait associations in variant set models by joint GBJ test**
-
 #`python /path/to/joint_GBJ_test.py --weight_db weight_db/ --output_dir result_gbj/ --cov_dir covariance/ --input_folder asso_test/ --gene_info #intermediate/gene_info.txt --output_name Func_GBJ_Joint --start_gene_index 1 --end_gene_index 12700\`
+#joint_GBJ_test.py. It's downloaded from https://github.com/Joker-Jerome/UTMOST
 
-**Command parameters:**
+#weight_db. Name of weight db in data folder (imputation models).
 
-joint_GBJ_test.py. It's downloaded from https://github.com/Joker-Jerome/UTMOST
+#input_folder. Name of folder containing single-test association results.
 
-weight_db. Name of weight db in data folder (imputation models).
+#cov_dir. Path where covariance results are (covariance matrix for gene-level test statistics across each set).
 
-input_folder. Name of folder containing single-test association results.
+#output_dir. Path where results will be saved to.
 
-cov_dir. Path where covariance results are (covariance matrix for gene-level test statistics across each set).
+#gene_info. File containing the all the genes tested.
 
-output_dir. Path where results will be saved to.
+#start_gene_index. Index of the starting gene in intermediate/gene_info.txt.
 
-gene_info. File containing the all the genes tested.
-
-start_gene_index. Index of the starting gene in intermediate/gene_info.txt.
-
-end_gene_index. Index of the ending gene in intermediate/gene_info.txt. 
+#end_gene_index. Index of the ending gene in intermediate/gene_info.txt. 
 
 ### References: 
 1. Stegle, O., Parts, L., Piipari, M., Winn, J., and Durbin, R. (2012). Using probabilistic estimation of expression residuals (PEER) to obtain increased power and interpretability of gene expression analyses. Nat Protoc 7, 500-507.
